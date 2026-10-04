@@ -163,10 +163,11 @@ class ContextEnv:
             head_n = tail_n = max_chars // 2
         elided = len(output) - head_n - tail_n
         hint = self.obs_cfg.get("too_long_hint", "Output truncated.")
+        tail = output[-tail_n:] if tail_n else ""
         return (
             f"{hint}\n\n---- HEAD ({head_n} chars) ----\n{output[:head_n]}\n"
             f"---- {elided} chars elided ----\n"
-            f"---- TAIL ({tail_n} chars) ----\n{output[-tail_n:]}"
+            f"---- TAIL ({tail_n} chars) ----\n{tail}"
         )
 
     @staticmethod
